@@ -72,6 +72,7 @@ inoremap <ESC> <nop>
 "jump out [], ()
 inoremap <C-j> <Esc>/[)}"'\]>]<CR>:nohl<CR>a
 
+nnoremap <leader>nt :NERDTreeToggle<CR>
 
 nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
 vnoremap <leader>g :<c-u> call<SID>GrepOperator(visualmode())<cr>
@@ -87,6 +88,6 @@ function! s:GrepOperator(type)
     silent execute "grep! -R " . shellescape(@@) . " ."
     copen
     let @@ = saved_unnamed_register
-endfunction)])))
+endfunction
 
 inoremap { {<CR>}<Esc>O
