@@ -15,6 +15,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
+Bundle 'davidhalter/jedi-vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -61,18 +62,26 @@ let python_highlight_all = 1
 autocmd! bufwritepost .vimrc source %
 
 let mapleader=";"
+let g:jedi#completions_command="<C-X>"
 
-
-
+command R !./%
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
 inoremap ( ()<ESC>i
 inoremap [ []<ESC>i
 inoremap { {}<ESC>i
 inoremap jk <ESC>
 inoremap <ESC> <nop>
+
 "jump out [], ()
 inoremap <C-j> <Esc>/[)}"'\]>]<CR>:nohl<CR>a
 
 nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>tp :tabp<CR>
+nnoremap <leader>tn :tabn<CR>
+
 
 nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
 vnoremap <leader>g :<c-u> call<SID>GrepOperator(visualmode())<cr>
