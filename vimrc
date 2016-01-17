@@ -16,6 +16,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'davidhalter/jedi-vim'
+Bundle 'dag/vim2hs'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -73,7 +74,7 @@ inoremap ( ()<ESC>i
 inoremap [ []<ESC>i
 inoremap { {}<ESC>i
 inoremap jk <ESC>
-inoremap <ESC> <nop>
+inoremap  <ESC> <nop>
 
 "jump out [], ()
 inoremap <C-j> <Esc>/[)}"'\]>]<CR>:nohl<CR>a
@@ -83,14 +84,14 @@ nnoremap <leader>tp :tabp<CR>
 nnoremap <leader>tn :tabn<CR>
 
 
-nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
-vnoremap <leader>g :<c-u> call<SID>GrepOperator(visualmode())<cr>
+nnoremap <leader>gp :set operatorfunc=<SID>GrepOperator<cr>g@
+vnoremap <leader>gp :<c-u>call <SID>GrepOperator(visualmode())<cr>
 function! s:GrepOperator(type)
     let saved_unnamed_register = @@
     if a:type ==# 'v'
-        normal! `< v`> y
+        normal! `<v`>y
     elseif a:type ==# 'char'
-        normal! `[ v`] y
+        normal! `[v`]y
     else
         return
     endif
