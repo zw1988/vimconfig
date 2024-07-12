@@ -1,46 +1,30 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+call plug#begin()
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Plugin 'potion'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plugin 'sheerun/vim-polyglot'
+" Plugin 'vuejs/vue-syntax-highlight'
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdtree'
+" Plugin 'davidhalter/jedi-vim'
+Plug 'mattn/emmet-vim'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'alvan/vim-closetag'
+Plug 'python-mode/python-mode',  { 'for': 'python', 'branch': 'develop' }
 
-Bundle 'tpope/vim-sensible'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'dag/vim2hs'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+call plug#end()
+" au FileType python Plug 'neoclide/coc.nvim', {'on': []}
 
-
-" enable syntax highlighting
 syntax enable
-
-" show line numbers
+filetype plugin indent on    " required
+set completeopt-=preview
 set number
 
-" set tabs to have 4 spaces
-set ts=4
+" set ts=4
 
 " indent when moving to the next line while writing code
 set autoindent
@@ -65,7 +49,7 @@ autocmd! bufwritepost .vimrc source %
 let mapleader=";"
 let g:jedi#completions_command="<C-X>"
 
-command R !./%
+" command R !./%
 nnoremap k gk
 nnoremap gk k
 nnoremap j gj
@@ -74,14 +58,11 @@ inoremap ( ()<ESC>i
 inoremap [ []<ESC>i
 inoremap { {}<ESC>i
 inoremap jk <ESC>
-inoremap  <ESC> <nop>
 
 "jump out [], ()
 inoremap <C-j> <Esc>/[)}"'\]>]<CR>:nohl<CR>a
 
 nnoremap <leader>nt :NERDTreeToggle<CR>
-nnoremap <leader>tp :tabp<CR>
-nnoremap <leader>tn :tabn<CR>
 
 
 nnoremap <leader>gp :set operatorfunc=<SID>GrepOperator<cr>g@
@@ -100,4 +81,15 @@ function! s:GrepOperator(type)
     let @@ = saved_unnamed_register
 endfunction
 
-inoremap { {<CR>}<Esc>O
+"inoremap { {<CR>}<Esc>O
+let g:pymode_rope = 1
+let g:pymode_options_max_line_length = 100
+let g:pymode_lint_ignore = ['E722', 'E501']
+let g:pymode_python = 'python3'
+let g:pymode_folding = 0
+let g:pymode_preview_position = 'topleft'
+let g:coc_disabled_servers = ['python']
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>
+autocmd FileType vue setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
